@@ -12,6 +12,7 @@ Nginx1.x personnal configuration and website templates on Debian linux distribut
 
 - Debian linux distribution: ~10.0
 - nginx: ~1.18
+- nginx-extra: ~1.18
 - openssl: ~1.1.1i
 
 ## Configuration
@@ -62,7 +63,7 @@ Module mod_http2 must be enable to provides HTTP/2 support in SSL.
 
 ### Features
 
-- _common.conf: contains many files with common snippets.
+- shared: contains many files with common snippets.
   - **access_control directory** contains Access control directives for application and static website.
   - **security directory** contains security directives for HSTS and WordPress.
 - 000-default: contains the default virtualhost configuration.
