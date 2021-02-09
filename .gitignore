@@ -5,6 +5,6 @@
 !.vscode/extensions.json
 desktop.ini
 /dist
-pbr*
-team*
-lab*
+/nginx
+*.fr
+*.com
