@@ -51,7 +51,7 @@ According to the nginx.conf file, when it starts, NGINX includes the module conf
 
 ## Templates
 
-I wrote theses templates to ease the process of creating named-based virtualhosts.
+I wrote theses templates to ease the process of creating Server Blocks.
 
 I do not use the module mod_macro, I only use the built-in Include and Define directives.
 
@@ -66,7 +66,7 @@ Module mod_http2 must be enable to provides HTTP/2 support in SSL.
 - shared: contains many files with common snippets.
   - **access_control directory** contains Access control directives for application and static website.
   - **security directory** contains security directives for HSTS and WordPress.
-- 000-default: contains the default virtualhost configuration.
+- 000-default: contains the default Server Blocks configuration.
 - static.tld: contains the name-based vhost configuration for a static website.
 - app.tld: contains the name-based vhost configuration for a PHP application.
 - api.tld: contains the name-based vhost configuration for a mixed static website and PHP application.
