@@ -24,30 +24,32 @@ According to the nginx.conf file, when it starts, NGINX includes the module conf
 
 - brotli.conf: configures brotli compression.
 - cache.conf: configures the cache.
-- dir.conf: defines files that will be used as an index..
-- expires.conf: configures the expires, the cache_control and the etag directives. Defines map filters using content_type.
+- dir.conf: defines files that will be used as an index.
+- expires.conf: configures the expires, the cache_control and the etag directives. Defines map filters using content_type. MANDATORY.
 - fastcgi.conf: configures common fastcgi settings.
 - gzip.conf: configures gzip compression.
-- headers.conf: adds few HTTP request and response headers customizations.
+- headers.conf: adds few HTTP request and response headers customizations. MANDATORY.
 - http2: configures http2.
 - limits.conf: configures request processing rate.
-- log.conf: defines log formats.
+- log.conf: defines log formats. MANDATORY.
 - mime.conf: adds more mime types.
 - nginx.conf: overrides the main nginx configuration.
 - realip.conf: configures settings to get real_ip IP address in log files.
-- ssl.conf: SSL configuration.
+- ssl.conf: SSL configuration. MANDATORY.
 
 ### How to setup the NGINX personnal configuration
 
 1. Copy the configuration [files](/src/conf-available) into /etc/nginx/conf-available
 2. Edit the named like *.conf files and make changes as you need.
-3. Enable the configuration you need using `nginxenconf.sh <filename without extention>`
+3. Enable the configuration:
+  - using `./nginxenconf.sh <filename without extention>`. Ex: `./nginxenconf.sh headers`
+  - or using `ln -s /etc/nginx/conf-available/headers.conf /etc/nginx/conf.d/headers.conf`
 4. Test the configuration using `nginx -t`
 5. When test is OK, activate the new configuration using `nginx -s reload` or `systemctl restart nginx.service`
 
 ## Templates
 
-I wrote theses templates to ease the process of creating Server Blocks.
+I wrote these templates to ease the process of creating server blocks.
 
 Each domain.tld directory contains configuration for HTTP and HTTPS. The domain.tld/include contains the common snippets for HTTP and HTTPS.
 
@@ -66,13 +68,15 @@ The Content Security Policy (CSP) snippets depends on your site and must be test
   - **access_control directory** contains access control directives for application and static website.
   - **headers directory** contains CORS directives.
   - **security directory** contains security directives for access restriction, HSTS directives and WordPress security rules.
+
 ### How to setup the site templates
 
 1. Copy the [templates](/src/sites-available) into /etc/nginx/sites-available
 2. Edit the files and make changes as you need.
 3. Edit and update the loader.conf file.
 4. Enable the sites using `ln -s /etc/nginx/sites-available/loader.conf /etc/nginx/sites-enabled/loader`
-5. restarts the nginx daemon using `nginx -s reload`
+5. Test the configuration using `nginx -t`
+6. restarts the nginx daemon using `nginx -s reload`or `systemctl restart nginx.service`
 
 ## Documentation
 
